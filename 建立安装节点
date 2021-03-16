@@ -5,15 +5,15 @@ ubuntu	16.04.1
 debian	4.19	
 macOS (x86)	10.15.7	
 macOS (ARM)	10.15.7	
-安装
-Ubuntu 或 Debian系统下安装简介（使用官方提供的脚本）
+一.安装 当前版本号（1.70.8）安装时需要输入
+1.Ubuntu 或 Debian系统下安装简介（使用官方提供的脚本）
 在你的终端输入以下命令，如果你是使用的vps，登录进入你的vps
 $ sudo apt install -y curl
 $ curl https://raw.githubusercontent.com/hoprnet/hopr-sh/master/setup-hoprd.sh --output setup-hoprd.sh
 $ chmod +x setup-hoprd.sh
 $ ./setup-hoprd.sh
 
-macOS系统下安装简介（使用官方提供的脚本）
+2.macOS系统下安装简介（使用官方提供的脚本）
 在你的终端输入以下命令，如果你是使用的vps，登录进入你的vps
 以防万一你缺少运行的软件，可以通过以下方式安装XCode CLI工具
 $ sudo xcode-select --install
@@ -24,7 +24,7 @@ $ curl https://raw.githubusercontent.com/hoprnet/hopr-sh/master/setup-hoprd-maco
 $ chmod +x setup-hoprd.sh
 $ ./setup-hoprd.sh
 
-Docker
+3.使用Docker安装
 找到你想在我们的Docker（http://gcr.io/hoprassociation/hoprd）注册表中运行的版本，并使用它作为基础映像。“最新版本”被标记为“Latest”。
 运行以下命令
 $ docker run -v $(pwd):/app/db \
@@ -33,7 +33,7 @@ $ docker run -v $(pwd):/app/db \
   -it gcr.io/hoprassociation/hoprd:latest \
   --password switzerland --init --rest --restHost 0.0.0.0 --admin --adminHost 0.0.0.0
 
-安装完成后，运行节点
+二.安装完成后，运行节点
 使用这些命令(根据您的设置选择)，我们将运行hoprd并存储日志。当第一次运行该命令时，它将创建文件夹db，在其中存储您的私有数据。（当你需要重置服务器时，备份好db文件）
 对于 Wildhorn 测试网，运行
  DEBUG=hopr*,libp2p:mplex:stream hoprd --init --rest --admin
@@ -46,14 +46,15 @@ $ docker run -v $(pwd):/app/db \
  本地主机，没有日志
   DEBUG=hopr*,libp2p:mplex:stream hoprd --init --rest --admin
   
- 运行完成后，在本地计算机上访问HOPRd
-  直接打开http://localhost:3000
+三. 
+  运行完成后，在本地计算机上访问HOPRd
+1.直接打开http://localhost:3000
  
- 在VPS上访问Hoprd
+2.在VPS上访问Hoprd
  $ ssh -L 3000:127.0.0.1:3000 root@`<你的VPS的ip地址>`
  运行后之后你需要输入你的VPS登录密码
  然后在你的浏览器上访问http://localhost:3000
 
-保存来自的VPS日志
+四.保存来自的VPS日志
 在你本地电脑上运行
 $ scp `<VPS的用户名>`@`<你的VPS的ip地址>`:~/hoprd-logs.txt ~/
